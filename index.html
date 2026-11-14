@@ -37,6 +37,37 @@
     <meta name="twitter:description" content="Private batch image compression in your browser." />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Free Image Compressor",
+          "url": "https://free-image-compressor.web-free.site/",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Any",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "description": "Batch compress JPG, PNG, WebP in your browser without uploading files."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are my images uploaded to the internet?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Compression runs in your browser with WebAssembly." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is it free?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. No subscription is required to compress images." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
     <link rel="stylesheet" href="/index.css" />
   </head>
   <body>

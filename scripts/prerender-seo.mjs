@@ -100,7 +100,37 @@ function buildPage(page) {
     `<meta property="og:description" content="${page.description}" />`,
   )
   const seoBlock = `<section id="seo-prerender" class="seo-prerender"><h1>${page.h1}</h1>${page.snippet}</section>`
-  html = html.replace('<div id="root"></div>', `${seoBlock}<div id="root"></div>`)
+  if (html.includes('<main id="root"')) {
+    html = html.replace(
+      '<main id="root"',
+      `${seoBlock}<main id="root"`,
+    )
+  } else {
+    html = html.replace(
+      '<div id="root"></div>',
+      `${seoBlock}<div id="root"></div>`,
+    )
+  }
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        name: 'Free Image Compressor',
+        url,
+        applicationCategory: 'MultimediaApplication',
+        offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'},
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: [{ '@type': 'Question', name: page.h1, acceptedAnswer: { '@type': 'Answer', text: page.description } }],
+      },
+    ],
+  }
+  html = html.replace(
+    '</head>',
+    `    <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  </head>`,
+  )
   return html
 }
 
