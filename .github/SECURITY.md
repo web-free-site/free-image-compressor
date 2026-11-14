@@ -3,7 +3,7 @@
 This is a **client-side only** application. Image compression and processing are performed entirely within your browser using local resources.
 
 * **No Data Collection:** Your images are never uploaded to a server.
-* **Privacy by Design:** Because there is no "backend", we cannot see, store, or share your data. There are also no ads, no cookies/trackers and no logging that are used in the website.
+* **Privacy by Design:** Because there is no compression backend, we cannot see, store, or share your image files. Settings may persist in browser localStorage. Third-party ad tags may use cookies when enabled.
 
 ---
 

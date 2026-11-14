@@ -1,40 +1,43 @@
-import React from 'react';
+import React from 'react'
+import {Locale, t} from '../i18n/messages'
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  locale: Locale
+  seoH1?: string
+}
+
+export const Header: React.FC<HeaderProps> = ({locale, seoH1}) => {
   return (
     <div className="relative text-gleam-dark dark:text-white overflow-hidden">
-      {/* Main Content */}
       <div className="bg-gleam-pink pt-6 pb-12 text-center relative z-10 px-4">
         <div className="relative z-10 flex flex-col items-center">
-          {/* Title Container */}
           <div className="relative z-20 select-none flex flex-col items-center w-full">
             <h1 className="font-display font-black tracking-tighter leading-none flex flex-row flex-wrap justify-center items-center gap-2 sm:gap-4 w-full max-w-[100vw]">
               <span
-                className="relative inline-block text-5xl min-[400px]:text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-gleam-dark"
+                className="relative inline-block text-4xl min-[400px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gleam-dark"
                 style={{
-                  textShadow: '0 2px 10px rgba(0,0,0,0.05)',
+                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.05)',
                 }}
               >
-                Img
+                Free
               </span>
-
               <span
                 className="relative inline-flex items-center justify-center h-fit px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-gleam-dark text-white rounded-[1rem] sm:rounded-[2rem] -rotate-3 shadow-[3px_3px_0px_#fff] sm:shadow-[6px_6px_0px_#fff] border-[3px] sm:border-[5px] border-white transform hover:rotate-0 transition-transform duration-300"
                 style={{textShadow: 'none'}}
               >
-                <span className="text-2xl min-[400px]:text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black lowercase tracking-tighter leading-none block mb-0.5 sm:mb-1">
-                  Compress
+                <span className="text-xl min-[400px]:text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-none block mb-0.5 sm:mb-1">
+                  Image Compressor
                 </span>
               </span>
             </h1>
 
             <div className="mt-6 max-w-3xl mx-auto space-y-2 px-2">
+              <p className="sr-only">{seoH1 ?? t(locale, 'siteName')}</p>
               <h2 className="text-xl md:text-2xl font-black text-gleam-dark tracking-tight">
-                The Ultimate Universal Image Tool.
+                {t(locale, 'heroTitle')}
               </h2>
               <p className="text-base md:text-lg font-bold text-gleam-dark/70 leading-relaxed tracking-tight">
-                Free, unlimited, privacy-first. Batch compress & convert images
-                offline on your device.
+                {t(locale, 'heroSubtitle')}
               </p>
             </div>
           </div>
@@ -52,5 +55,5 @@ export const Header: React.FC = () => {
         </svg>
       </div>
     </div>
-  );
-};
+  )
+}

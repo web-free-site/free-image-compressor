@@ -162,3 +162,79 @@ body {
 .dark :focus-visible {
   outline: 2px solid #ffaff3;
 }
+
+/* ── Ad slots (Adsterra via isolated iframes) ────────────────────── */
+
+.ad-slot {
+  text-align: center;
+}
+
+.ad-slot__label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+  margin-bottom: 0.25rem;
+  color: #292d3e;
+}
+
+.ad-header,
+.ad-home-top,
+.ad-between {
+  padding: 0.35rem;
+  background: rgba(41, 45, 62, 0.06);
+}
+
+.ad-mobile-sticky {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .ad-mobile-sticky {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: #fff9f5;
+    border-top: 1px solid #ffaff3;
+    padding: 0.35rem;
+  }
+}
+
+.ad-slot__frame {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.ad-smartlink {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+.ad-smartlink a {
+  color: #ffaff3;
+}
+
+.site-top-nav a {
+  text-decoration: none;
+}
+
+.seo-prerender {
+  max-width: 42rem;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  font-size: 0.95rem;
+  color: #292d3e;
+}
+
+.seo-prerender h1 {
+  font-size: 1.25rem;
+}
+
+#root:not(:empty) ~ #seo-prerender,
+#root:not(:empty) + #seo-prerender {
+  display: none;
+}

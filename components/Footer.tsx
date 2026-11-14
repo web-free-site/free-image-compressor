@@ -44,7 +44,7 @@ export const Footer = memo(() => {
         <div className="max-w-5xl mx-auto px-6 text-center">
           <div className="text-xs md:text-sm font-medium uppercase tracking-widest leading-loose text-white/40 cursor-default">
             <span className="block mb-4 text-[10px] md:text-xs opacity-60">
-              Powered by Open Source
+              WASM codecs — open source
             </span>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
               <a
