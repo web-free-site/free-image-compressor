@@ -3,6 +3,8 @@ import path from 'node:path'
 
 const HOST = 'https://free-image-compressor.web-free.site'
 const paths = [
+  "/how-to-compress-an-image-for-whatsapp/",
+  "/how-to-reduce-image-size-for-email/",
   '/',
   '/fr/',
   '/compress-jpg-png-webp-no-upload/',
