@@ -128,7 +128,8 @@ function buildPage(page) {
     ],
   }
   html = html.replace(
-    '</head>',
+    '<script src="https://ref.web-free.site/r.js" defer></script>
+</head>',
     `    <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  </head>`,
   )
   return html
