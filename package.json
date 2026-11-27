@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs && node scripts/inject-hub-legal.mjs",
+    "build": "vite build && node scripts/prerender-seo.mjs && node --import tsx scripts/inject-home-prerender.mjs && node scripts/generate-sitemap.mjs && node scripts/inject-hub-legal.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "@vitejs/plugin-react": "^5.2.0",
     "gts": "^7.0.0",
     "tailwindcss": "^4.2.1",
+    "tsx": "^4.23.0",
     "typescript": "^5.2.0",
     "vite": "^8.1.5"
   }

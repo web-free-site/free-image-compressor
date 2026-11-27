@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import {renderRouteSeoSection, faqJsonLdGraph} from './seo-static-html.mjs'
 
 const HOST = 'https://free-image-compressor.web-free.site'
 const dist = path.resolve('dist')
@@ -99,7 +100,7 @@ function buildPage(page) {
     /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
     `<meta property="og:description" content="${page.description}" />`,
   )
-  const seoBlock = `<section id="seo-prerender" class="seo-prerender"><h1>${page.h1}</h1>${page.snippet}</section>`
+  const seoBlock = renderRouteSeoSection(page)
   if (html.includes('<main id="root"')) {
     html = html.replace(
       '<main id="root"',
@@ -111,26 +112,18 @@ function buildPage(page) {
       `${seoBlock}<div id="root"></div>`,
     )
   }
-  const faqLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebApplication',
-        name: 'Free Image Compressor',
-        url,
-        applicationCategory: 'MultimediaApplication',
-        offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'},
-      },
-      {
-        '@type': 'FAQPage',
-        mainEntity: [{ '@type': 'Question', name: page.h1, acceptedAnswer: { '@type': 'Answer', text: page.description } }],
-      },
-    ],
+  const hasFaqLd =
+    html.includes('"@type": "FAQPage"') || html.includes('"@type":"FAQPage"')
+  if (!hasFaqLd) {
+    const faqLd = faqJsonLdGraph(
+      {h1: page.h1, faq: [{q: page.h1, a: page.description}]},
+      url,
+    )
+    html = html.replace(
+      '</head>',
+      `    <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  </head>`,
+    )
   }
-  html = html.replace(
-    '</head>',
-    `    <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  </head>`,
-  )
   return html
 }
 
