@@ -12,7 +12,10 @@ export const Header: React.FC<HeaderProps> = ({locale, seoH1}) => {
       <div className="bg-gleam-pink pt-6 pb-12 text-center relative z-10 px-4">
         <div className="relative z-10 flex flex-col items-center">
           <div className="relative z-20 select-none flex flex-col items-center w-full">
-            <h1 className="font-display font-black tracking-tighter leading-none flex flex-row flex-wrap justify-center items-center gap-2 sm:gap-4 w-full max-w-[100vw]">
+            <h1
+              className="font-display font-black tracking-tighter leading-none flex flex-row flex-wrap justify-center items-center gap-2 sm:gap-4 w-full max-w-[100vw]"
+              aria-label={seoH1 ?? 'Free Image Compressor'}
+            >
               <span
                 className="relative inline-block text-4xl min-[400px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gleam-dark"
                 style={{
@@ -32,7 +35,6 @@ export const Header: React.FC<HeaderProps> = ({locale, seoH1}) => {
             </h1>
 
             <div className="mt-6 max-w-3xl mx-auto space-y-2 px-2">
-              <p className="sr-only">{seoH1 ?? t(locale, 'siteName')}</p>
               <h2 className="text-xl md:text-2xl font-black text-gleam-dark tracking-tight">
                 {t(locale, 'heroTitle')}
               </h2>
