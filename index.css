@@ -234,7 +234,6 @@ body {
   font-size: 1.25rem;
 }
 
-#root:not(:empty) ~ #seo-prerender,
-#root:not(:empty) + #seo-prerender {
+body:has(#root:not(:empty)) #seo-prerender {
   display: none;
 }
