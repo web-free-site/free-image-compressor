@@ -1,5 +1,11 @@
 import {SITE} from '../site'
 
+export type SeoBlock =
+  | {type: 'p'; text: string}
+  | {type: 'h2'; text: string}
+  | {type: 'h3'; text: string}
+  | {type: 'ol'; items: string[]}
+
 export interface SeoPage {
   path: string
   locale: 'en' | 'fr'
@@ -8,6 +14,8 @@ export interface SeoPage {
   h1: string
   keywords: string
   paragraphs: string[]
+  blocks?: SeoBlock[]
+  hubGuideUrl?: string
   faq: {q: string; a: string}[]
 }
 
@@ -16,29 +24,83 @@ export const SEO_PAGES: SeoPage[] = [
     path: '/',
     locale: 'en',
     title:
-      'Free Image Compressor — batch JPG, PNG, WebP in your browser | No upload',
+      'Free Image Compressor — shrink JPG, PNG, WebP in your browser (no upload)',
     description:
-      'Compress and convert unlimited images in your browser. Batch queue, before/after preview, ZIP download. Private WASM processing — files never leave your device.',
-    h1: 'Free Image Compressor for JPG, PNG, WebP and more',
+      'Free Image Compressor reduces JPG, PNG, WebP, AVIF, and more in your browser. Batch queue, before/after compare, ZIP download. Files stay on your device — no sign-up.',
+    h1: 'Free Image Compressor',
     keywords:
-      'free image compressor, compress jpg online, batch image optimizer, webp compressor browser',
-    paragraphs: [
-      'Free Image Compressor helps photographers, shop owners, and web publishers shrink photos without sending them to a server. Drop a folder of JPG, PNG, WebP, AVIF, or JPEG XL files and get smaller downloads in seconds.',
-      'Everything runs locally with jSquash WebAssembly codecs (from the Squoosh ecosystem). Resize, pick output quality, compare before and after, then download individually or as a ZIP.',
-      'No account, no file-size cap on our side — your browser memory is the only limit. Ideal when you want privacy on a slow mobile connection.',
+      'free image compressor, compress jpg online, batch image optimizer, webp compressor browser, compress images without uploading',
+    paragraphs: [],
+    hubGuideUrl:
+      'https://web-free.site/guides/compress-images-for-website-free/',
+    blocks: [
+      {
+        type: 'p',
+        text: 'Free Image Compressor is a browser-based tool that shrinks photos and graphics without uploading them to a cloud server. You can batch-process JPG, JPEG, PNG, WebP, GIF, AVIF, and JPEG XL, adjust quality and dimensions, preview the savings, and download optimized files or a ZIP archive. Everything runs on your device using WebAssembly codecs from the jSquash and Squoosh ecosystem, so sensitive scans, product shots, and personal albums stay private.',
+      },
+      {
+        type: 'h2',
+        text: 'What this free image compressor does',
+      },
+      {
+        type: 'p',
+        text: 'Large images slow down websites, bounce email attachments over provider limits, and eat mobile data when you share them in chat apps. This compressor lowers file size while keeping visuals acceptable for web, email, and social posts. You set output format and quality, optionally resize to maximum width or height, and inspect a before-and-after comparison on any file in the queue. Multiple files process in parallel through web workers, so a folder of shop photos or event pictures can finish faster than opening each file in a desktop editor.',
+      },
+      {
+        type: 'p',
+        text: 'Unlike many “free” tools that quietly send your pictures to remote APIs, processing here never leaves your tab. There is no account, no per-file upload quota on our side, and no watermark on exports. The practical limit is your device memory and CPU, which is why very large batches work best on a desktop browser with a few dozen images at a time.',
+      },
+      {
+        type: 'h2',
+        text: 'How to compress images in five steps',
+      },
+      {
+        type: 'ol',
+        items: [
+          'Open Free Image Compressor and drag images or a folder onto the drop zone, or use the file picker to add one or many files.',
+          'Open Settings to choose output format (for example WebP for the web or JPEG for universal sharing), set quality, and turn on resize if you need smaller pixel dimensions.',
+          'Review the queue: each job shows original size, compressed size, and percent saved as workers finish.',
+          'Click Compare on any finished job to check sharpness and artifacts before you publish or send the file.',
+          'Download individual optimized images or use the batch ZIP option when you compressed a whole folder.',
+        ],
+      },
+      {
+        type: 'h2',
+        text: 'Privacy and in-browser processing',
+      },
+      {
+        type: 'p',
+        text: 'When you use a server-side compressor, your files may be stored, scanned, or used for machine-learning datasets according to that vendor’s policy. Free Image Compressor avoids that model: decoding and re-encoding happen locally in WebAssembly modules loaded once per session. Network requests are limited to loading the app and codecs, not to transmitting your image bytes. That makes the tool a practical choice for invoices, IDs, medical paperwork, unreleased product photos, or any workflow where “upload to random website” is not acceptable. Clear your browser tab when you are done if you share the computer with others.',
+      },
+      {
+        type: 'h2',
+        text: 'Common use cases',
+      },
+      {
+        type: 'p',
+        text: 'Website owners use it to prepare hero images, blog thumbnails, and catalog photos so pages load faster and Core Web Vitals improve. Shopify, WordPress, and static-site publishers can export WebP or AVIF alongside fallbacks. Sellers compress product PNGs before listing on marketplaces with strict size caps. Students and remote workers reduce screenshot and scan sizes for email and LMS uploads. Travelers on metered connections shrink vacation albums before backing them up to cloud drives. Marketers batch-convert campaign assets to consistent quality without installing Photoshop or GIMP.',
+      },
     ],
     faq: [
       {
         q: 'Are my images uploaded to the internet?',
-        a: 'No. Compression happens entirely in your browser using web workers and WASM.',
+        a: 'No. Compression runs entirely in your browser with WebAssembly and web workers. Your files are not sent to our servers for encoding.',
       },
       {
-        q: 'Which formats are supported?',
-        a: 'Common inputs include JPG, PNG, WebP, GIF, AVIF, and JPEG XL. You can convert to PNG, WebP, JPEG, AVIF, and more.',
+        q: 'Which image formats can I compress?',
+        a: 'You can open JPG, JPEG, PNG, WebP, GIF, AVIF, and JPEG XL, and export to common formats including JPEG, PNG, WebP, and AVIF depending on your settings.',
       },
       {
-        q: 'Is it free?',
-        a: 'Yes. The tool is free to use in your browser.',
+        q: 'Is Free Image Compressor really free?',
+        a: 'Yes. There is no subscription and no sign-up required to compress images in the browser.',
+      },
+      {
+        q: 'Can I compress multiple images at once?',
+        a: 'Yes. Add as many files as your device can handle in parallel. When the queue finishes, download each file or grab everything in one ZIP.',
+      },
+      {
+        q: 'How much smaller will my files get?',
+        a: 'Savings depend on the original format, resolution, and quality you choose. Photos often shrink 40–80% at moderate quality; PNG screenshots may compress less unless you resize or switch to WebP.',
       },
     ],
   },
